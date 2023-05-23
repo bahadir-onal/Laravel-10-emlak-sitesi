@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\PropertyTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+    // ADMIN MİDDLEWARE
     Route::middleware(['auth', 'role:admin'])->group(function () { 
 
         Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
@@ -51,6 +53,7 @@ require __DIR__.'/auth.php';
 
     });
 
+    // AGENT MİDDLEWARE
     Route::middleware(['auth', 'role:agent'])->group(function () { 
 
         Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
@@ -59,3 +62,11 @@ require __DIR__.'/auth.php';
 
 
     Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+    // ADMIN GROUP MİDDLEWARE
+    Route::middleware(['auth', 'role:admin'])->group(function () { 
+
+        Route::controller(PropertyTypeController::class)->group(function(){
+            Route::get('/all/type', 'AllType')->name('all.type');
+        });
+    });
