@@ -4,7 +4,7 @@
             <div class="page-content">
 				<nav class="page-breadcrumb">
 					<ol class="breadcrumb">
-                        <a href="" class="btn btn-inverse-info"> Add Property Type  </a>
+                        <a href="{{ route('add.type') }}" class="btn btn-inverse-info"> Add Property Type  </a>
 					</ol>
 				</nav>
 				<div class="row">
@@ -29,8 +29,8 @@
                                                     <td>{{ $item->type_name }}</td>
                                                     <td>{{ $item->type_icon }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-inverse-warning"> Edit </a>
-                                                        <a href="" class="btn btn-inverse-danger"> Delete  </a>
+                                                        <a href="{{ route('edit.type',$item->id) }}" class="btn btn-inverse-warning"> Edit </a>
+                                                        <a href="{{ route('delete.type',$item->id) }}" class="btn btn-inverse-danger" id="delete"> Delete  </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
