@@ -37,6 +37,23 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="type"></i>
+                    <span class="link-title">Amenities</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="emails">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                        <a href="{{ route('all.amenitie') }}" class="nav-link">All Amenitie</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="{{ route('add.type') }}" class="nav-link">Add Amenitie</a>
+                        </li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a href="pages/apps/calendar.html" class="nav-link">
                     <i class="link-icon" data-feather="calendar"></i>
                     <span class="link-title">Calendar</span>
