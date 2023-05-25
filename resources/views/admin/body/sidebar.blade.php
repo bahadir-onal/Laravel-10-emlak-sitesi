@@ -38,7 +38,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
-                    <i class="link-icon" data-feather="type"></i>
+                    <i class="link-icon" data-feather="align-left"></i>
                     <span class="link-title">Amenities</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
