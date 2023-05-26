@@ -33,6 +33,9 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 	<!-- Toast message -->
 
+	<link rel="stylesheet" href="{{ asset('backend/assets/vendors/select2/select2.min.css') }}">
+  	<link rel="stylesheet" href="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.css') }}">
+
   <!-- Layout styles -->  
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
   <!-- End layout styles -->
@@ -94,6 +97,23 @@
   	<script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
 	<!-- End plugin js for this page -->
 
+	<!-- tinymce -->
+	<script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
+     <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
+ 	<!-- tinymce -->
+
+	<!-- Input Tags -->
+	<script src="{{ asset('backend/assets/vendors/inputmask/jquery.inputmask.min.js') }}"></script>
+	<script src="{{ asset('backend/assets/vendors/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('backend/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+
+	<script src="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+
+	<script src="{{ asset('backend/assets/js/inputmask.js') }}"></script>
+	<script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+	<script src="{{ asset('backend/assets/js/typeahead.js') }}"></script>
+	<script src="{{ asset('backend/assets/js/tags-input.js') }}"></script>
+    <!-- Input Tags -->
 	<!-- Custom js for this page -->
 	<script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
 	<!-- End custom js for this page -->
