@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                               <h6 class="card-title">Add Property</h6>
-                                <form id="myForm" method="post" action="{{ route('store.amenitie') }}" class="forms-sample">
+                                <form id="myForm" method="post" action="{{ route('store.property') }}" class="forms-sample" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
@@ -45,7 +45,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Main Thumbnail </label>
-                                                <input type="file" name="property_thumbnail " class="form-control" onChange="mainThamUrl(this)"  >
+                                                <input type="file" name="property_thumbnail" class="form-control" onChange="mainThamUrl(this)"  >
 
                                                 <img src="" id="mainThmb">
                                             </div>
@@ -53,7 +53,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Multiple Image </label>
-                                                <input type="file" name="multi_img[]" class="form-control" id="multiImg" multiple="" >
+                                                <input type="file" name="multi_img" class="form-control" id="multiImg" multiple="" >
 
                                                 <div class="row" id="preview_img"> </div>
                                             </div>
@@ -115,27 +115,6 @@
                                     </div><!-- Row -->
 
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Property Type </label>
-                                                <input type="text" name="property_size"  class="form-control" >
-                                            </div>
-                                        </div><!-- Col -->
-                                        <div class="col-sm-4">
-                                            <div class="mb-3">
-                                                <label class="form-label">Property Amenities </label>
-                                                <input type="text" name="property_video"  class="form-control" >
-                                            </div>
-                                        </div><!-- Col -->
-                                        <div class="col-sm-4">
-                                            <div class="mb-3">
-                                                <label class="form-label"> Agent </label>
-                                                <input type="text" name="neighborhood"  class="form-control" >
-                                            </div>
-                                        </div><!-- Col -->
-                                    </div><!-- Row -->
-
-                                    <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Latitude</label>
@@ -190,14 +169,14 @@
                                     <div class="col-sm-12">
                                         <div class="mb-3">
                                             <label class="form-label">Short Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" name="short_descp" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                     </div><!-- Col -->
                                     <div class="col-sm-12">
                                         <div class="mb-3">
                                             <label class="form-label">Long Description</label>
 
-                                            <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+                                            <textarea class="form-control" name="long_descp" name="tinymce" id="tinymceExample" rows="10"></textarea>
 
                                         </div>
                                     </div><!-- Col -->
