@@ -88,8 +88,8 @@ class PropertyController extends Controller
 
         foreach ($image as $img) {
 
-            $make_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize('370','250')->save('upload/property/multi-image/'.$make_name);
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize('370','250')->save('upload/property/multi-image/'.$make_name);
             $uploadPath = 'upload/property/multi-image/'.$make_name;
 
             MultiImage::insert([

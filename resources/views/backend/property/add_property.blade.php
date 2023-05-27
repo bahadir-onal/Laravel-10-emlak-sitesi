@@ -53,7 +53,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Multiple Image </label>
-                                                <input type="file" name="multi_img" class="form-control" id="multiImg" multiple="" >
+                                                <input type="file" name="multi_img[]" class="form-control" id="multiImg" multiple="" >
 
                                                 <div class="row" id="preview_img"> </div>
                                             </div>
