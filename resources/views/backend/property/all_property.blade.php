@@ -22,6 +22,7 @@
                                                 <th>Type</th>
                                                 <th>Status Type</th>
                                                 <th>City</th>
+                                                <th>Code</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -34,9 +35,11 @@
                                                         <img src="{{ asset($item->property_thumbnail) }}" style="width: 70px; height: 40px;">
                                                     </td>
                                                     <td>{{ $item->property_name }}</td>
-                                                    <td>{{ $item->ptype_id }}</td>
+                                                    <td>{{ $item['type']['type_name'] }}</td>
                                                     <td>{{ $item->property_status }}</td>
                                                     <td>{{ $item->city }}</td>
+                                                    <td>{{ $item->property_code }}</td>
+
                                                     <td>
                                                         @if($item->status == 1)
                                                             <span class="badge rounded-pill bg-success">Active</span>
@@ -46,7 +49,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route('edit.type',$item->id) }}" class="btn btn-inverse-warning"> Edit </a>
+                                                        <a href="{{ route('edit.property',$item->id) }}" class="btn btn-inverse-warning"> Edit </a>
                                                         <a href="{{ route('delete.type',$item->id) }}" class="btn btn-inverse-danger" id="delete"> Delete  </a>
                                                     </td>
                                                 </tr>
