@@ -135,4 +135,78 @@ class PropertyController extends Controller
 
         return view('backend.property.edit_property',compact('amenities','propertyType','activeAgent','property','property_amenities'));
     }
+
+    public function UpdateProperty(Request $request)
+    {
+        $amenities_id = $request->amenities_id;
+        $amenities = implode(",",$amenities_id);
+
+        $property_id = $request->id;
+
+        Property::findOrFail($property_id)->update([
+            'ptype_id' => $request->ptype_id,
+            'amenities_id' => $amenities,
+            'property_name' => $request->property_name,
+            'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
+            'property_status' =>$request->property_status,
+
+            'lowest_price' => $request->lowest_price,
+            'max_price' => $request->max_price,
+            'short_descp' => $request->short_descp,
+            'long_descp' => $request->long_descp,
+            'bedrooms' => $request->bedrooms,
+            'bathrooms' => $request->bathrooms,
+            'garage' => $request->garage,
+            'garage_size' => $request->garage_size,
+
+            'property_size' => $request->property_size,
+            'property_video' => $request->property_video,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->postal_code,
+
+            'neighborhood' => $request->neighborhood,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'featured' => $request->featured,
+            'hot' => $request->hot,
+            'agent_id' => $request->agent_id,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Property updated succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification); 
+    }
+
+    public function UpdatePropertyThumbnail(Request $request)
+    {
+        $property_id = $request->id;
+        $oldImg = $request->old_img;
+
+        $image = $request->file('property_thumbnail');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize('370','250')->save('upload/property/thumbnail/'.$name_gen);
+        $save_url = 'upload/property/thumbnail/'.$name_gen;
+
+        if (file_exists($oldImg)) {
+            unlink($oldImg);
+        }
+
+        Property::findOrFail($property_id)->update([
+            'property_thumbnail' => $save_url,
+            'updated_at' => Carbon::now()
+        ]);
+
+        $notification = array(
+            'message' => 'Property image thumbnail updated succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification); 
+    }
 }

@@ -10,8 +10,10 @@
                         <div class="card">
                             <div class="card-body">
                               <h6 class="card-title">Add Property</h6>
-                                <form id="myForm" method="post" action="{{ route('store.property') }}" class="forms-sample" enctype="multipart/form-data">
+                                <form id="myForm" method="post" action="{{ route('update.property') }}" class="forms-sample" enctype="multipart/form-data">
                                     @csrf
+
+                                    <input type="hidden" name="id" value="{{ $property->id }}"  >
 
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -217,6 +219,41 @@
             </div>
         </div>
 	</div>
+
+    <!--  /// Property Main Thambnail Image Update //// -->
+    <div class="page-content" style="margin-top: -35px;" > 
+        <div class="row profile-body"> 
+            <div class="col-md-12 col-xl-12 middle-wrapper">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Edit Main Thumbnail Image </h6>
+                            <form method="post" action="{{ route('update.property.thumbnail') }}" id="myForm" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $property->id }}">
+                                <input type="hidden" name="old_img" value="{{ $property->property_thumbnail }}" >
+
+                                <div class="row mb-3">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Main Thumbnail </label>
+                                        <input type="file" name="property_thumbnail" class="form-control" onChange="mainThamUrl(this)"  >
+                                        <img src="" id="mainThmb">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">  </label> 
+                                        <img src="{{ asset($property->property_thumbnail) }}" style="width:100px; height:100px;">
+                                    </div>
+                                </div><!-- Col -->
+
+                                <button type="submit" class="btn btn-primary">Save Changes </button>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--    /// End  Property Main Thambnail Image Update //// -->
 
     
     <script type="text/javascript">

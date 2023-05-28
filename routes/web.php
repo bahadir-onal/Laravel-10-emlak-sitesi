@@ -92,5 +92,7 @@ require __DIR__.'/auth.php';
             Route::get('/add/property', 'AddProperty')->name('add.property');
             Route::post('/store/property', 'StoreProperty')->name('store.property');
             Route::get('/edit/property/{id}', 'EditProperty')->name('edit.property');
+            Route::post('/update/property', 'UpdateProperty')->name('update.property');
+            Route::post('/update/property/thumbnail', 'UpdatePropertyThumbnail')->name('update.property.thumbnail');
         });
     });
