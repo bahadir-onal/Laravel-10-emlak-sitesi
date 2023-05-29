@@ -94,5 +94,7 @@ require __DIR__.'/auth.php';
             Route::get('/edit/property/{id}', 'EditProperty')->name('edit.property');
             Route::post('/update/property', 'UpdateProperty')->name('update.property');
             Route::post('/update/property/thumbnail', 'UpdatePropertyThumbnail')->name('update.property.thumbnail');
+            Route::post('/update/property/multiimage', 'UpdatePropertyMultiImage')->name('update.property.multiimage');
+            Route::get('/property/multiimage/delete/{id}', 'PropertyMultiImageDelete')->name('property.multiimage.delete');
         });
     });

@@ -128,12 +128,14 @@ class PropertyController extends Controller
 
         $type = $property->amenities_id;
         $property_amenities = explode(',', $type);
+
+        $multiImage = MultiImage::where('property_id',$id)->get();
      
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
 
-        return view('backend.property.edit_property',compact('amenities','propertyType','activeAgent','property','property_amenities'));
+        return view('backend.property.edit_property',compact('amenities','propertyType','activeAgent','property','property_amenities','multiImage'));
     }
 
     public function UpdateProperty(Request $request)
@@ -208,5 +210,47 @@ class PropertyController extends Controller
         );
 
         return redirect()->route('all.property')->with($notification); 
+    }
+
+    public function UpdatePropertyMultiImage(Request $request)
+    {
+        $imgs = $request->multi_img;
+
+        foreach ($imgs as $id => $img) {
+
+            $imgDel = MultiImage::findOrFail($id);
+            unlink($imgDel->photo_name);
+
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(770,520)->save('upload/property/multi-image/'.$make_name);
+            $uploadPath = 'upload/property/multi-image/'.$make_name;
+
+            MultiImage::where('id',$id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now()
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'Property multi image updated succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+    }
+
+    public function PropertyMultiImageDelete($id)
+    {
+        $oldImg = MultiImage::findOrFail($id);
+        unlink($oldImg->photo_name);
+
+        $oldImg->delete();
+
+        $notification = array(
+            'message' => 'Property multi image deleted succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
     }
 }
