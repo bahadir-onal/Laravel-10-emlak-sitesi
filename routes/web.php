@@ -99,5 +99,6 @@ require __DIR__.'/auth.php';
             Route::post('/store/new/multiimage', 'StoreNewMultiImage')->name('store.new.multiimage');
             Route::post('/update/property/facilities', 'UpdatePropertyFacilities')->name('update.property.facilities');
             Route::get('/delete/property/{id}', 'DeleteProperty')->name('delete.property');
+            Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
         });
     });
