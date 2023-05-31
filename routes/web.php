@@ -100,5 +100,7 @@ require __DIR__.'/auth.php';
             Route::post('/update/property/facilities', 'UpdatePropertyFacilities')->name('update.property.facilities');
             Route::get('/delete/property/{id}', 'DeleteProperty')->name('delete.property');
             Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
+            Route::post('/inactive/property', 'InactiveProperty')->name('inactive.property');
+            Route::post('/active/property', 'ActiveProperty')->name('active.property');
         });
     });

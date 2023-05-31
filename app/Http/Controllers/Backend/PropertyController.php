@@ -353,4 +353,34 @@ class PropertyController extends Controller
 
         return view('backend.property.details_property',compact('amenities','propertyType','activeAgent','property','property_amenities','multiImage','facilities'));
     }
+
+    public function InactiveProperty(Request $request)
+    {
+        $property_id = $request->id;
+        Property::findOrFail($property_id)->update([
+            'status' => 0
+        ]);
+
+        $notification = array(
+            'message' => 'Property inactive succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification); 
+    }
+
+    public function ActiveProperty(Request $request)
+    {
+        $property_id = $request->id;
+        Property::findOrFail($property_id)->update([
+            'status' => 1
+        ]);
+
+        $notification = array(
+            'message' => 'Property active succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.property')->with($notification); 
+    }
 }
