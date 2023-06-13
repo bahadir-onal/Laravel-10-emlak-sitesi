@@ -58,6 +58,7 @@ require __DIR__.'/auth.php';
     Route::middleware(['auth', 'role:agent'])->group(function () { 
 
         Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
+        Route::get('/agent/logout', [AgentController::class, 'AgentLogout'])->name('agent.logout');
 
     });
 
