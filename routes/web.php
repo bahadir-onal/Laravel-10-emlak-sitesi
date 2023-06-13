@@ -74,6 +74,7 @@ require __DIR__.'/auth.php';
     // ADMIN GROUP MİDDLEWARE
     Route::middleware(['auth', 'role:admin'])->group(function () { 
 
+        //PROPERTY TYPE ROUTE
         Route::controller(PropertyTypeController::class)->group(function(){
             Route::get('/all/type', 'AllType')->name('all.type');
             Route::get('/add/type', 'AddType')->name('add.type');
@@ -109,5 +110,12 @@ require __DIR__.'/auth.php';
             Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
             Route::post('/inactive/property', 'InactiveProperty')->name('inactive.property');
             Route::post('/active/property', 'ActiveProperty')->name('active.property');
+        });
+
+        //AGENT ALL ROUTE
+        Route::controller(AdminController::class)->group(function(){
+            Route::get('/all/agent', 'AllAgent')->name('all.agent');
+            Route::get('/add/agent', 'AddAgent')->name('add.agent');
+            Route::post('/store/agent', 'StoreAgent')->name('store.agent');
         });
     });

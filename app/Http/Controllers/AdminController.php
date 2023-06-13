@@ -108,4 +108,38 @@ class AdminController extends Controller
 
         return redirect()->back()->with($notification); 
     }
+
+    /////////////// AGENT USER ALL FUNCTİON ///////////////
+
+    public function AllAgent()
+    {
+        $allAgent = User::where('role', 'agent')->get();
+        
+        return view('backend.agentuser.all_agent',compact('allAgent')); 
+    }
+
+    public function AddAgent()
+    {
+        return view('backend.agentuser.add_agent'); 
+    }
+
+    public function StoreAgent(Request $request)
+    {
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'agent',
+            'status' => 'active',
+        ]);
+
+        $notification = array(
+            'message' => 'Agent created succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.agent')->with($notification);
+    }
 }
