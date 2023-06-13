@@ -91,4 +91,41 @@ class AgentController extends Controller
 
         return redirect()->back()->with($notification); 
     }
+
+    public function AgentChangePassword()
+    {
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+
+        return view('agent.agent_change_password',compact('profileData'));
+    }
+
+    public function AgentUpdatePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed'
+        ]);
+
+        if (!Hash::check($request->old_password, auth::user()->password)) {
+            
+            $notification = array(
+                'message' => 'Old password does not match!',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification); 
+        }
+
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        $notification = array(
+            'message' => 'Password change succesfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+    }
 }
