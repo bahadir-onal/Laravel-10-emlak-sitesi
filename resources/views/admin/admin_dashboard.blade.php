@@ -118,6 +118,8 @@
 	<script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
 	<!-- End custom js for this page -->
 
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 	<script>
 	@if(Session::has('message'))
 	var type = "{{ Session::get('alert-type','info') }}"
