@@ -70,7 +70,14 @@ require __DIR__.'/auth.php';
         Route::controller(AgentPropertyController::class)->group(function(){
             Route::get('/agent/all/property', 'AgentAllProperty')->name('agent.all.property');
             Route::get('/agent/add/property', 'AgentAddProperty')->name('agent.add.property');
-            Route::post('/agent/store/property', 'AgentStoreProperty')->name('agent.store.property');            
+            Route::post('/agent/store/property', 'AgentStoreProperty')->name('agent.store.property');        
+            Route::get('/agent/edit/property/{id}', 'AgentEditProperty')->name('agent.edit.property');
+            Route::post('/agent/update/property', 'AgentUpdateProperty')->name('agent.update.property');
+            Route::post('/agent/update/property/thumbnail', 'AgentUpdatePropertyThumbnail')->name('agent.update.property.thumbnail');        
+            Route::post('/agent/update/property/multiimage', 'AgentUpdatePropertyMultiimage')->name('agent.update.property.multiimage');        
+            Route::get('/agent/property/multiimage/delete/{id}', 'AgentPropertyMultiimageDelete')->name('agent.property.multiimage.delete');
+            Route::post('/agent/store/new/multiimage', 'AgentStoreNewMultiimage')->name('agent.store.new.multiimage');
+            Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');        
         });
     });
 
