@@ -7,6 +7,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
+use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,13 @@ require __DIR__.'/auth.php';
         Route::get('/agent/change/password', [AgentController::class, 'AgentChangePassword'])->name('agent.change.password');
         Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
 
+
+        // AGENT PROPERTY ALL ROUTE
+        Route::controller(AgentPropertyController::class)->group(function(){
+            Route::get('/agent/all/property', 'AgentAllProperty')->name('agent.all.property');
+            Route::get('/agent/add/property', 'AgentAddProperty')->name('agent.add.property');
+            Route::post('/agent/store/property', 'AgentStoreProperty')->name('agent.store.property');            
+        });
     });
 
     Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
