@@ -79,6 +79,12 @@ require __DIR__.'/auth.php';
             Route::post('/agent/store/new/multiimage', 'AgentStoreNewMultiimage')->name('agent.store.new.multiimage');
             Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');        
         });
+
+        
+        // AGENT BUY PACKAGE ROUTE
+        Route::controller(AgentPropertyController::class)->group(function(){
+            Route::get('/buy/package', 'BuyPackage')->name('buy.package');
+        });
     });
 
     Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
