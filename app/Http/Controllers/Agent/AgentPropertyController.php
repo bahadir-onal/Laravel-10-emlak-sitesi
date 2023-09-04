@@ -407,5 +407,12 @@ class AgentPropertyController extends Controller
 
         return redirect()->route('agent.all.property')->with($notification);  
     }
-    
+
+    public function PackageHistory()
+    {
+        $id = Auth::user()->id;
+        $packageHistory = PackagePlan::where('user_id', $id)->get();
+
+        return view('agent.package.package_history', compact('packageHistory'));
+    }
 }
