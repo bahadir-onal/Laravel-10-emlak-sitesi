@@ -89,6 +89,7 @@ require __DIR__.'/auth.php';
             Route::get('/buy/professional/plan', 'BuyProfessionalPlan')->name('buy.professional.plan');
             Route::post('/store/professional/plan', 'StoreProfessionalPlan')->name('store.professional.plan');
             Route::get('/package/history', 'PackageHistory')->name('package.history');
+            Route::get('/agent/package/invoice/{id}', 'AgentPackageInvoice')->name('agent.package.invoice');
         });
     });
 
@@ -136,6 +137,8 @@ require __DIR__.'/auth.php';
             Route::get('/details/property/{id}', 'DetailsProperty')->name('details.property');
             Route::post('/inactive/property', 'InactiveProperty')->name('inactive.property');
             Route::post('/active/property', 'ActiveProperty')->name('active.property');
+            Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
+            Route::get('/admin/package/invoice/{id}', 'AdminPackageInvoice')->name('admin.package.invoice');
         });
 
         //ADMİN AGENT ALL ROUTE

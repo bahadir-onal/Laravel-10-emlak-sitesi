@@ -8,8 +8,10 @@ use App\Models\Property;
 use App\Models\MultiImage;
 use App\Models\Facility;
 use App\Models\Amenities;
+use App\Models\PackagePlan;
 use App\Models\PropertyType;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
@@ -382,5 +384,24 @@ class PropertyController extends Controller
         );
 
         return redirect()->route('all.property')->with($notification); 
+    }
+
+    public function AdminPackageHistory()
+    {
+       $packageHistory = PackagePlan::latest()->get();
+
+       return view('backend.package.package_history',compact('packageHistory'));
+    }
+
+    public function AdminPackageInvoice($id)
+    {
+        $packageHistory = PackagePlan::where('id', $id)->first();
+
+        $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packageHistory'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path()
+        ]);
+
+        return $pdf->download('invoice.pdf');
     }
 }

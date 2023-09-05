@@ -18,6 +18,7 @@
                                             <tr>
                                                 <th>S1</th>
                                                 <th>Image</th>
+                                                <th>Name</th>
                                                 <th>Package</th>
                                                 <th>Invoice</th>
                                                 <th>Amount</th>
@@ -32,13 +33,14 @@
                                                     <td>
                                                         <img src="{{ (!empty($item->user->photo)) ? url('upload/agent_images/'.$item->user->photo) : url('upload/no-image.jpg') }}" style="width: 70px; height: 40px;">
                                                     </td>
+                                                    <td>{{ $item['user']['name'] }}</td>
                                                     <td>{{ $item->package_name }}</td>
                                                     <td>{{ $item->invoice }}</td>
                                                     <td>{{ $item->package_amount }}</td>
                                                     <td>{{ $item->created_at->format('1 M d Y') }}</td>
 
                                                     <td>
-                                                        <a href="{{ route('agent.package.invoice',$item->id) }}"  class="btn btn-inverse-warning" title="Download"> <i data-feather="download"></i> </a>
+                                                        <a href="{{ route('admin.package.invoice',$item->id) }}"  class="btn btn-inverse-warning" title="Download"> <i data-feather="download"></i> </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

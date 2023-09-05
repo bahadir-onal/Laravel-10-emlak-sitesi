@@ -11,6 +11,7 @@ use App\Models\Amenities;
 use App\Models\PropertyType;
 use App\Models\User;
 use App\Models\PackagePlan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
@@ -414,5 +415,17 @@ class AgentPropertyController extends Controller
         $packageHistory = PackagePlan::where('user_id', $id)->get();
 
         return view('agent.package.package_history', compact('packageHistory'));
+    }
+
+    public function AgentPackageInvoice($id)
+    {
+        $packageHistory = PackagePlan::where('id', $id)->first();
+
+        $pdf = Pdf::loadView('agent.package.package_history_invoice', compact('packageHistory'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path()
+        ]);
+
+        return $pdf->download('invoice.pdf');
     }
 }
