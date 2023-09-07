@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 /*
 |--------------------------------------------------------------------------
@@ -152,3 +153,8 @@ require __DIR__.'/auth.php';
             Route::get('/changeStatus', 'changeStatus');
         });
     });
+
+
+    // Frontend Property Details All Route 
+
+    Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']); 
