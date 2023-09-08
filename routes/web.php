@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 /*
 |--------------------------------------------------------------------------
@@ -158,3 +159,5 @@ require __DIR__.'/auth.php';
     // Frontend Property Details All Route 
 
     Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']); 
+    Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishlist']); 
+    
