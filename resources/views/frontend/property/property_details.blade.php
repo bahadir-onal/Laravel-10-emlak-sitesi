@@ -175,8 +175,7 @@
                                 <h4>Property Video</h4>
                             </div>
                             <figure class="image-box">
-                                <iframe width="700" height="415"
-                                    src="{{ $property->property_video }}"
+                                <iframe width="700" height="415" src="{{ $property->property_video }}"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowfullscreen></iframe>
@@ -240,17 +239,36 @@
                     <div class="property-sidebar default-sidebar">
                         <div class="author-widget sidebar-widget">
                             <div class="author-box">
-                                <figure class="author-thumb"><img src="assets/images/resource/author-1.jpg"
-                                        alt=""></figure>
-                                <div class="inner">
-                                    <h4>Michael Bean</h4>
-                                    <ul class="info clearfix">
-                                        <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street,
-                                            St Johns Wood</li>
-                                        <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a></li>
-                                    </ul>
-                                    <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
-                                </div>
+
+                                @if ($property->agent_id == null)
+                                    <figure class="author-thumb"><img src="{{ url('upload/admin.jpg') }}"
+                                            alt=""></figure>
+                                    <div class="inner">
+                                        <h4>Michael Bean</h4>
+                                        <ul class="info clearfix">
+                                            <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street,
+                                                St Johns Wood</li>
+                                            <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a>
+                                            </li>
+                                        </ul>
+                                        <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
+                                    </div>
+                                @else
+                                    <figure class="author-thumb"><img
+                                            src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no-image.jpg') }}"
+                                            alt=""></figure>
+                                    <div class="inner">
+                                        <h4>{{ $property->user->name }}</h4>
+                                        <ul class="info clearfix">
+                                            <li><i class="fas fa-map-marker-alt"></i>{{ $property->user->address }}</li>
+                                            <li><i class="fas fa-phone"></i><a
+                                                    href="tel:03030571965">{{ $property->user->phone }}</a>
+                                            </li>
+                                        </ul>
+                                        <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
+                                    </div>
+                                @endif
+
                             </div>
                             <div class="form-inner">
                                 <form action="property-details.html" method="post" class="default-form">
@@ -316,138 +334,69 @@
                     <h4>Similar Properties</h4>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
-                            data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="assets/images/feature/feature-1.jpg" alt="">
-                                    </figure>
-                                    <div class="batch"><i class="icon-11"></i></div>
-                                    <span class="category">Featured</span>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="author-info clearfix">
-                                        <div class="author pull-left">
-                                            <figure class="author-thumb"><img src="assets/images/feature/author-1.jpg"
-                                                    alt=""></figure>
-                                            <h6>Michael Bean</h6>
-                                        </div>
-                                        <div class="buy-btn pull-right"><a href="property-details.html">For Buy</a></div>
+
+                    @foreach ($related_property as $item)
+
+                        <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                            <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                                data-wow-duration="1500ms">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><img src="{{ asset($item->property_thumbnail) }}"
+                                                alt="">
+                                        </figure>
+                                        <div class="batch"><i class="icon-11"></i></div>
+                                        <span class="category">Featured</span>
                                     </div>
-                                    <div class="title-text">
-                                        <h4><a href="property-details.html">Villa on Grand Avenue</a></h4>
-                                    </div>
-                                    <div class="price-box clearfix">
-                                        <div class="price-info pull-left">
-                                            <h6>Start From</h6>
-                                            <h4>$30,000.00</h4>
+                                    <div class="lower-content">
+                                        <div class="author-info clearfix">
+                                            <div class="author pull-left">
+
+                                                @if ($property->agent_id == null)
+                                                    <figure class="author-thumb"><img src="{{ url('upload/admin.jpg') }}"
+                                                            alt="">
+                                                    </figure>
+                                                    <h6>Admin</h6>
+                                                @else
+                                                    <figure class="author-thumb"><img
+                                                            src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no-image.jpg') }}"
+                                                            alt=""></figure>
+                                                    <h6>{{ $property->user->name }}</h6>
+                                                @endif
+
+                                            </div>
+                                            <div class="buy-btn pull-right"><a href="property-details.html">For {{ $item->property_status }}</a>
+                                            </div>
                                         </div>
-                                        <ul class="other-option pull-right clearfix">
-                                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                        <div class="title-text">
+                                            <h4><a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a></h4>
+                                        </div>
+                                        <div class="price-box clearfix">
+                                            <div class="price-info pull-left">
+                                                <h6>Start From</h6>
+                                                <h4>${{ $item->lowest_price }}</h4>
+                                            </div>
+                                            <ul class="other-option pull-right clearfix">
+                                                <li><a href="property-details.html"><i class="icon-12"></i></a></li>
+                                                <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <p>{{ $item->short_descp }}</p>
+                                        <ul class="more-details clearfix">
+                                            <li><i class="icon-14"></i>3 {{ $item->bedrooms }}</li>
+                                            <li><i class="icon-15"></i>2 {{ $item->bathrooms }}</li>
+                                            <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
                                         </ul>
+                                        <div class="btn-box"><a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                class="theme-btn btn-two">See
+                                                Details</a></div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing sed.</p>
-                                    <ul class="more-details clearfix">
-                                        <li><i class="icon-14"></i>3 Beds</li>
-                                        <li><i class="icon-15"></i>2 Baths</li>
-                                        <li><i class="icon-16"></i>600 Sq Ft</li>
-                                    </ul>
-                                    <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See
-                                            Details</a></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-one wow fadeInUp animated" data-wow-delay="300ms"
-                            data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="assets/images/feature/feature-2.jpg" alt="">
-                                    </figure>
-                                    <div class="batch"><i class="icon-11"></i></div>
-                                    <span class="category">Featured</span>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="author-info clearfix">
-                                        <div class="author pull-left">
-                                            <figure class="author-thumb"><img src="assets/images/feature/author-2.jpg"
-                                                    alt=""></figure>
-                                            <h6>Robert Niro</h6>
-                                        </div>
-                                        <div class="buy-btn pull-right"><a href="property-details.html">For Rent</a></div>
-                                    </div>
-                                    <div class="title-text">
-                                        <h4><a href="property-details.html">Contemporary Apartment</a></h4>
-                                    </div>
-                                    <div class="price-box clearfix">
-                                        <div class="price-info pull-left">
-                                            <h6>Start From</h6>
-                                            <h4>$45,000.00</h4>
-                                        </div>
-                                        <ul class="other-option pull-right clearfix">
-                                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing sed.</p>
-                                    <ul class="more-details clearfix">
-                                        <li><i class="icon-14"></i>3 Beds</li>
-                                        <li><i class="icon-15"></i>2 Baths</li>
-                                        <li><i class="icon-16"></i>600 Sq Ft</li>
-                                    </ul>
-                                    <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See
-                                            Details</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-one wow fadeInUp animated" data-wow-delay="600ms"
-                            data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="assets/images/feature/feature-3.jpg" alt="">
-                                    </figure>
-                                    <div class="batch"><i class="icon-11"></i></div>
-                                    <span class="category">Featured</span>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="author-info clearfix">
-                                        <div class="author pull-left">
-                                            <figure class="author-thumb"><img src="assets/images/feature/author-3.jpg"
-                                                    alt=""></figure>
-                                            <h6>Keira Mel</h6>
-                                        </div>
-                                        <div class="buy-btn pull-right"><a href="property-details.html">Sold Out</a></div>
-                                    </div>
-                                    <div class="title-text">
-                                        <h4><a href="property-details.html">Luxury Villa With Pool</a></h4>
-                                    </div>
-                                    <div class="price-box clearfix">
-                                        <div class="price-info pull-left">
-                                            <h6>Start From</h6>
-                                            <h4>$63,000.00</h4>
-                                        </div>
-                                        <ul class="other-option pull-right clearfix">
-                                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing sed.</p>
-                                    <ul class="more-details clearfix">
-                                        <li><i class="icon-14"></i>3 Beds</li>
-                                        <li><i class="icon-15"></i>2 Baths</li>
-                                        <li><i class="icon-16"></i>600 Sq Ft</li>
-                                    </ul>
-                                    <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See
-                                            Details</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    @endforeach
+
                 </div>
             </div>
         </div>

@@ -28,6 +28,9 @@ class IndexController extends Controller
 
         $facility = Facility::where('property_id', $id)->get();
 
-        return view('frontend.property.property_details', compact('property', 'multi_image', 'property_amen', 'facility'));
+        $type_id = $property->ptype_id;
+        $related_property = Property::where('ptype_id', $type_id)->where('id','!=',$id)->orderBy('id', 'desc')->limit(3)->get();
+
+        return view('frontend.property.property_details', compact('property', 'multi_image', 'property_amen', 'facility', 'related_property'));
     }
 }
