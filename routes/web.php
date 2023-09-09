@@ -40,6 +40,15 @@ Route::get('/dashboard', function () {
         Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
         Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
         Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+
+         // User wishlist all route 
+        Route::controller(WishlistController::class)->group(function(){
+            Route::get('/user/wishlist', 'UserWishlist')->name('user.wishlist'); 
+            Route::get('/get-wishlist-property', 'GetWishlistProperty'); 
+            Route::get('/wishlist-remove/{id}', 'WishlistRemove'); 
+
+        });
         
     });
 
