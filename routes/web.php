@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,13 @@ Route::get('/dashboard', function () {
             Route::get('/user/wishlist', 'UserWishlist')->name('user.wishlist'); 
             Route::get('/get-wishlist-property', 'GetWishlistProperty'); 
             Route::get('/wishlist-remove/{id}', 'WishlistRemove'); 
+        });
 
+         // User compare all route 
+         Route::controller(CompareController::class)->group(function(){
+            Route::get('/user/compare', 'UserCompare')->name('user.compare');
+            Route::get('/get-compare-property', 'GetCompareProperty');
+            Route::get('/compare-remove/{id}', 'CompareRemove'); 
         });
         
     });
@@ -166,7 +173,11 @@ require __DIR__.'/auth.php';
 
 
     // Frontend Property Details All Route 
-
     Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']); 
+
+    // Frontend Property Wishlist All Route
     Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishlist']); 
+
+    // Frontend Property Compare All Route
+    Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']); 
     

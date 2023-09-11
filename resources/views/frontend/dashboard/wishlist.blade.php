@@ -3,8 +3,8 @@
     <!--Page Title-->
     <section class="page-title-two bg-color-1 centred">
         <div class="pattern-layer">
-            <div class="pattern-1" style="background-image: url(assets/images/shape/shape-9.png);"></div>
-            <div class="pattern-2" style="background-image: url(assets/images/shape/shape-10.png);"></div>
+            <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});"></div>
+            <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box clearfix">
@@ -76,8 +76,7 @@
 
     <!-- subscribe-section -->
     <section class="subscribe-section bg-color-3">
-        <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-2.png);"></div>
-        <div class="auto-container">
+        <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-2.png') }});"></div        <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-12 text-column">
                     <div class="text">
