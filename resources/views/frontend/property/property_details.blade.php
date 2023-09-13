@@ -268,26 +268,85 @@
                                         <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
                                     </div>
                                 @endif
-
                             </div>
+
                             <div class="form-inner">
-                                <form action="property-details.html" method="post" class="default-form">
-                                    <div class="form-group">
-                                        <input type="text" name="name" placeholder="Your name" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="email" placeholder="Your Email" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="phone" placeholder="Phone" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                    </div>
-                                </form>
+
+                                @auth
+
+                                @php
+                                    $id = Auth::user()->id;
+                                    $userData = App\Models\User::find($id);
+                                @endphp
+
+                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                        @csrf
+
+                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                                        @if ($property->agent_id == null)
+
+                                            <input type="hidden" name="agent_id" value="">
+                                            
+                                        @else
+
+                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                            
+                                        @endif
+
+                                        <div class="form-group">
+                                            <input type="text" name="msg_name" placeholder="Your name" value="{{ $userData->name }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="msg_email" placeholder="Your Email" value="{{ $userData->email }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="msg_phone" placeholder="Phone" value="{{ $userData->phone }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="form-group message-btn">
+                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                        </div>
+                                    </form>
+
+                                @else
+
+                                    <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                        @csrf
+
+                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
+
+                                        @if ($property->agent_id == null)
+
+                                            <input type="hidden" name="agent_id" value="">
+                                            
+                                        @else
+
+                                            <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                            
+                                        @endif
+
+                                        <div class="form-group">
+                                            <input type="text" name="msg_name" placeholder="Your name" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="msg_email" placeholder="Your Email" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="msg_phone" placeholder="Phone" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="form-group message-btn">
+                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                        </div>
+                                    </form>
+
+                                @endauth
+
                             </div>
                         </div>
                         <div class="calculator-widget sidebar-widget">
@@ -336,7 +395,6 @@
                 <div class="row clearfix">
 
                     @foreach ($related_property as $item)
-
                         <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                             <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
                                 data-wow-duration="1500ms">
@@ -365,11 +423,14 @@
                                                 @endif
 
                                             </div>
-                                            <div class="buy-btn pull-right"><a href="property-details.html">For {{ $item->property_status }}</a>
+                                            <div class="buy-btn pull-right"><a href="property-details.html">For
+                                                    {{ $item->property_status }}</a>
                                             </div>
                                         </div>
                                         <div class="title-text">
-                                            <h4><a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a></h4>
+                                            <h4><a
+                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
+                                            </h4>
                                         </div>
                                         <div class="price-box clearfix">
                                             <div class="price-info pull-left">
@@ -387,14 +448,14 @@
                                             <li><i class="icon-15"></i>2 {{ $item->bathrooms }}</li>
                                             <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
                                         </ul>
-                                        <div class="btn-box"><a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                        <div class="btn-box"><a
+                                                href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
                                                 class="theme-btn btn-two">See
                                                 Details</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     @endforeach
 
                 </div>

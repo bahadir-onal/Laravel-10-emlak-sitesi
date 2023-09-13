@@ -179,5 +179,8 @@ require __DIR__.'/auth.php';
     Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishlist']); 
 
     // Frontend Property Compare All Route
-    Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']); 
+    Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
+    
+    // Frontend Send Message All Route
+    Route::post('/property/message', [IndexController::class, 'PropertyMessage'])->name('property.message'); 
     
