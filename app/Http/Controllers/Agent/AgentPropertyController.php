@@ -11,6 +11,7 @@ use App\Models\Amenities;
 use App\Models\PropertyType;
 use App\Models\User;
 use App\Models\PackagePlan;
+use App\Models\PropetyMessage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -427,5 +428,13 @@ class AgentPropertyController extends Controller
         ]);
 
         return $pdf->download('invoice.pdf');
+    }
+
+    public function AgentPropertyMessage()
+    {
+        $id = Auth::user()->id;
+        $user_message = PropetyMessage::where('agent_id', $id)->get();
+
+        return view('agent.message.all_message', compact('user_message'));
     }
 }

@@ -96,6 +96,8 @@ require __DIR__.'/auth.php';
             Route::get('/agent/property/multiimage/delete/{id}', 'AgentPropertyMultiimageDelete')->name('agent.property.multiimage.delete');
             Route::post('/agent/store/new/multiimage', 'AgentStoreNewMultiimage')->name('agent.store.new.multiimage');
             Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');        
+        
+            Route::get('/agent/property/message', 'AgentPropertyMessage')->name('agent.property.message');
         });
 
         
