@@ -8,7 +8,7 @@
                 <div class="single-item-carousel owl-carousel owl-theme owl-dots-none nav-style-one">
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/team/team-1.jpg" alt=""></figure>
+                            <figure class="image-box"><img src="{{ asset('frontend/assets/images/team/team-1.jpg') }}" alt=""></figure>{{ asset('frontend/') }}
                             <div class="lower-content">
                                 <div class="inner">
                                     <h4><a href="agents-details.html">Merrie Lewis</a></h4>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/team/team-2.jpg" alt=""></figure>
+                            <figure class="image-box"><img src="{{ asset('frontend/assets/images/team/team-2.jpg') }}" alt=""></figure>
                             <div class="lower-content">
                                 <div class="inner">
                                     <h4><a href="agents-details.html">Parks Missie</a></h4>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/team/team-3.jpg" alt=""></figure>
+                            <figure class="image-box"><img src="{{ asset('frontend/assets/images/team/team-3.jpg') }}" alt=""></figure>
                             <div class="lower-content">
                                 <div class="inner">
                                     <h4><a href="agents-details.html">Mariana Buenos</a></h4>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/team/team-4.jpg" alt=""></figure>
+                            <figure class="image-box"><img src="{{ asset('frontend/assets/images/team/team-4.jpg') }}" alt=""></figure>
                             <div class="lower-content">
                                 <div class="inner">
                                     <h4><a href="agents-details.html">Stephen Fowler</a></h4>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="team-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/team/team-5.jpg" alt=""></figure>
+                            <figure class="image-box"><img src="{{ asset('frontend/assets/images/team/team-5.jpg') }}" alt=""></figure>
                             <div class="lower-content">
                                 <div class="inner">
                                     <h4><a href="agents-details.html">Daisy Phillips</a></h4>

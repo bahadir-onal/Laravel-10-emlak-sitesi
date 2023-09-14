@@ -10,6 +10,7 @@ use App\Models\Facility;
 use App\Models\Amenities;
 use App\Models\PackagePlan;
 use App\Models\PropertyType;
+use App\Models\PropetyMessage;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
@@ -403,5 +404,12 @@ class PropertyController extends Controller
         ]);
 
         return $pdf->download('invoice.pdf');
+    }
+
+    public function AdminPropertyMessage()
+    {
+       $user_messages = PropetyMessage::latest()->get();
+
+       return view('backend.message.all_message', compact('user_messages'));
     }
 }

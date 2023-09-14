@@ -1,5 +1,5 @@
-@extends('agent.agent_dashboard')
-@section('agent')
+@extends('admin.admin_dashboard')
+@section('admin')
     <div class="page-content">
 
         <div class="row inbox-wrapper">
@@ -15,7 +15,7 @@
                                     </button>
                                     <div class="order-first">
                                         <h4>Mail Service</h4>
-                                        <p class="text-muted">amiahburton@gmail.com</p>
+                                        <p class="text-muted">Support@easylearningbd.com</p>
                                     </div>
                                 </div>
                                 <div class="d-grid my-3">
@@ -27,9 +27,12 @@
                                             <a class="nav-link d-flex align-items-center" href="../email/inbox.html">
                                                 <i data-feather="inbox" class="icon-lg me-2"></i>
                                                 Inbox
-                                                <span class="badge bg-danger fw-bolder ms-auto">{{ count($user_message) }}
+                                                <span class="badge bg-danger fw-bolder ms-auto">{{ count($user_messages) }}
                                             </a>
                                         </li>
+
+
+
                                     </ul>
                                     <p class="text-muted tx-12 fw-bolder text-uppercase mb-2 mt-4">Labels</p>
                                     <ul class="nav flex-column">
@@ -61,7 +64,7 @@
                                             <div class="d-flex align-items-end mb-2 mb-md-0">
                                                 <i data-feather="inbox" class="text-muted me-2"></i>
                                                 <h4 class="me-1">Inbox</h4>
-                                                <span class="text-muted">({{ count($user_message) }} new messages)</span>
+                                                <span class="text-muted">({{ count($user_messages) }} new messages)</span>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -73,33 +76,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 border-bottom d-flex align-items-center justify-content-between flex-wrap">
 
-                                </div>
                                 <div class="email-list">
 
-                                    @foreach ($user_message as $user_msg)
 
+
+                                    <!-- email list item -->
+                                    @foreach ($user_messages as $msg)
                                         <div class="email-list-item">
-                                            <div class="email-list-actions">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input">
-                                                </div>
-                                                <a class="favorite" href="javascript:;"><span><i
-                                                            data-feather="star"></i></span></a>
-                                            </div>
-                                            <a href="{{ route('agent.message.details', ['id' => $user_msg->id]) }}" class="email-list-detail">
+
+                                            <a href=" " class="email-list-detail">
                                                 <div class="content">
-                                                    <span class="from">{{ $user_msg['user']['name'] }}</span>
-                                                    <p class="msg">{{ $user_msg->message }}</p>
+                                                    <span class="from">{{ $msg['user']['name'] }}</span>
+                                                    <p class="msg"> {{ $msg->message }} </p>
                                                 </div>
                                                 <span class="date">
-                                                    {{ $user_msg->created_at->format('l M d') }}
+                                                    <span class="icon"><i data-feather="paperclip"></i> </span>
+                                                    {{ $msg->created_at->format('l M d') }}
                                                 </span>
                                             </a>
                                         </div>
-
                                     @endforeach
+
+
+
                                 </div>
                             </div>
                         </div>

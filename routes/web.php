@@ -96,8 +96,9 @@ require __DIR__.'/auth.php';
             Route::get('/agent/property/multiimage/delete/{id}', 'AgentPropertyMultiimageDelete')->name('agent.property.multiimage.delete');
             Route::post('/agent/store/new/multiimage', 'AgentStoreNewMultiimage')->name('agent.store.new.multiimage');
             Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');        
-        
-            Route::get('/agent/property/message', 'AgentPropertyMessage')->name('agent.property.message');
+            //Message Route
+            Route::get('/agent/property/message/', 'AgentPropertyMessage')->name('agent.property.message');
+            Route::get('/agent/message/details/{id}', 'AgentMessageDetails')->name('agent.message.details');
         });
 
         
@@ -159,6 +160,8 @@ require __DIR__.'/auth.php';
             Route::post('/active/property', 'ActiveProperty')->name('active.property');
             Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
             Route::get('/admin/package/invoice/{id}', 'AdminPackageInvoice')->name('admin.package.invoice');
+            //Message Route
+            Route::get('/admin/property/message/', 'AdminPropertyMessage')->name('admin.property.message');
         });
 
         //ADMİN AGENT ALL ROUTE

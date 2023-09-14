@@ -15,7 +15,7 @@
                                     </button>
                                     <div class="order-first">
                                         <h4>Mail Service</h4>
-                                        <p class="text-muted">amiahburton@gmail.com</p>
+                                        <p class="text-muted">Support@easylearningbd.com</p>
                                     </div>
                                 </div>
                                 <div class="d-grid my-3">
@@ -24,12 +24,16 @@
                                 <div class="email-aside-nav collapse">
                                     <ul class="nav flex-column">
                                         <li class="nav-item active">
-                                            <a class="nav-link d-flex align-items-center" href="../email/inbox.html">
+                                            <a class="nav-link d-flex align-items-center"
+                                                href="{{ route('agent.property.message') }}">
                                                 <i data-feather="inbox" class="icon-lg me-2"></i>
                                                 Inbox
                                                 <span class="badge bg-danger fw-bolder ms-auto">{{ count($user_message) }}
                                             </a>
                                         </li>
+
+
+
                                     </ul>
                                     <p class="text-muted tx-12 fw-bolder text-uppercase mb-2 mt-4">Labels</p>
                                     <ul class="nav flex-column">
@@ -73,33 +77,61 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 border-bottom d-flex align-items-center justify-content-between flex-wrap">
 
-                                </div>
                                 <div class="email-list">
 
-                                    @foreach ($user_message as $user_msg)
 
-                                        <div class="email-list-item">
-                                            <div class="email-list-actions">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input">
-                                                </div>
-                                                <a class="favorite" href="javascript:;"><span><i
-                                                            data-feather="star"></i></span></a>
-                                            </div>
-                                            <a href="{{ route('agent.message.details', ['id' => $user_msg->id]) }}" class="email-list-detail">
-                                                <div class="content">
-                                                    <span class="from">{{ $user_msg['user']['name'] }}</span>
-                                                    <p class="msg">{{ $user_msg->message }}</p>
-                                                </div>
-                                                <span class="date">
-                                                    {{ $user_msg->created_at->format('l M d') }}
-                                                </span>
-                                            </a>
-                                        </div>
 
-                                    @endforeach
+                                    <!-- email list item -->
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+
+                                            <tbody>
+                                                <tr>
+                                                    <th>Customer Name : </th>
+                                                    <td>{{ $message_details['user']['name'] }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Customer Email : </th>
+                                                    <td>{{ $message_details['user']['email'] }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Customer Phone : </th>
+                                                    <td>{{ $message_details['user']['phone'] }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Property Name : </th>
+                                                    <td>{{ $message_details['property']['property_name'] }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Property Code : </th>
+                                                    <td>{{ $message_details['property']['property_code'] }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Property Status : </th>
+                                                    <td>{{ $message_details['property']['property_status'] }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Message : </th>
+                                                    <td>{{ $message_details->message }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Sending Time : </th>
+                                                    <td>{{ $message_details->created_at->format('l M d') }}</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

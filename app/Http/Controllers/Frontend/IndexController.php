@@ -46,8 +46,8 @@ class IndexController extends Controller
             PropetyMessage::insert([
 
                 'user_id' => Auth::user()->id,
-                'agent_id' => $property_id,
-                'property_id' => $agent_id,
+                'agent_id' => $agent_id,
+                'property_id' => $property_id,
                 'msg_name' => $request->msg_name,
                 'msg_email' => $request->msg_email,
                 'msg_phone' => $request->msg_phone,
