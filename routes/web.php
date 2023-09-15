@@ -188,4 +188,7 @@ require __DIR__.'/auth.php';
     
     // Frontend Send Message All Route
     Route::post('/property/message', [IndexController::class, 'PropertyMessage'])->name('property.message'); 
+
+    // Agent details pagein frontend All Route
+    Route::get('/agent/details/{id}', [IndexController::class, 'AgentDetails'])->name('agent.details'); 
     
