@@ -169,26 +169,62 @@
                     <div class="default-sidebar agent-sidebar">
                         <div class="agents-contact sidebar-widget">
                             <div class="widget-title">
-                                <h5>Contact To Michael</h5>
+                                <h5>Contact To {{ $agent->name }}</h5>
                             </div>
                             <div class="form-inner">
-                                <form action="contact.html" method="post" class="default-form">
-                                    <div class="form-group">
-                                        <input type="text" name="name" placeholder="Your Name" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="email" placeholder="Email Address" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="tel" name="phone" placeholder="Phone" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" placeholder="Your Message"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                    </div>
-                                </form>
+
+                                @auth
+
+                                    @php
+                                        $id = Auth::user()->id;
+                                        $userData = App\Models\User::find($id);
+                                    @endphp
+
+                                    <form action="{{ route('agent.details.message') }}" method="post" class="default-form">
+                                        @csrf
+                                        <input type="hidden" name="agent_id" value="{{ $agent->id }}">
+
+                                        <div class="form-group">
+                                            <input type="text" name="name" placeholder="Your Name" value="{{ $userData->name }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" placeholder="Email Address" value="{{ $userData->email }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="tel" name="phone" placeholder="Phone" value="{{ $userData->phone }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" placeholder="Your Message"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                        </div>
+                                    </form>
+
+                                @else
+
+                                    <form action="{{ route('agent.details.message') }}" method="post" class="default-form">
+                                        @csrf
+                                        <input type="hidden" name="agent_id" value="{{ $agent->id }}">
+
+                                        <div class="form-group">
+                                            <input type="text" name="name" placeholder="Your Name" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" placeholder="Email Address" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="tel" name="phone" placeholder="Phone" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" placeholder="Your Message"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                        </div>
+                                    </form>
+
+                                @endauth
                             </div>
                         </div>
                         <div class="category-widget sidebar-widget">

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('propety_messages', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('agent_id');
-            $table->integer('property_id');
+            $table->integer('user_id')->nullable();
+            $table->string('agent_id')->nullable();
+            $table->integer('property_id')->nullable();
             $table->string('msg_name')->nullable();
             $table->string('msg_email')->nullable();
             $table->string('msg_phone')->nullable();
