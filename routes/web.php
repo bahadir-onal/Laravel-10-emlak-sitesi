@@ -198,5 +198,8 @@ require __DIR__.'/auth.php';
     // Agent details get all rents All Route
     Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('rent.property'); 
 
-    // Agent details get all rents All Route
+    // Agent details get all buy All Route
     Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
+
+    // Get all property type data All Route
+    Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
