@@ -195,3 +195,8 @@ require __DIR__.'/auth.php';
     // Agent details send message All Route
     Route::post('/agent/details/message', [IndexController::class, 'AgentDetailsMessage'])->name('agent.details.message'); 
     
+    // Agent details get all rents All Route
+    Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('rent.property'); 
+
+    // Agent details get all rents All Route
+    Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
