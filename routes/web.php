@@ -114,7 +114,7 @@ require __DIR__.'/auth.php';
         });
     });
 
-    Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
+    Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class)->name('agent.login');
     Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
     
     Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
