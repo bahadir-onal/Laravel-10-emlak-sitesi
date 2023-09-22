@@ -68,7 +68,7 @@
                                         <li><a href="contact.html"><span>Contact</span></a></li>
 
                                         <li>
-                                            <a href="{{ route('agent.login') }}"
+                                            <a href=""
                                                 class="btn btn-success"><span>+</span>Add Listing</a>
                                         </li>
                                     </ul>
