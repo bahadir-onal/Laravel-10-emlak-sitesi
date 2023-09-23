@@ -83,4 +83,20 @@ class StateController extends Controller
             return redirect()->route('all.state')->with($notification);
         }
     }
+
+    public function DeleteState($id)
+    {
+        $state = State::findOrFail($id);
+        $image = $state->state_image;
+        unlink($image);
+
+        $state->delete();
+
+        $notification = array(
+            'message' => 'State deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

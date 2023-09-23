@@ -11,6 +11,7 @@ use App\Models\Amenities;
 use App\Models\PackagePlan;
 use App\Models\PropertyType;
 use App\Models\PropetyMessage;
+use App\Models\State;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
@@ -29,9 +30,10 @@ class PropertyController extends Controller
     {
         $amenities = Amenities::latest()->get();
         $propertyType = PropertyType::latest()->get();
+        $propertyState = State::latest()->get();
         $activeAgent = User::where('status','active')->where('role', 'agent')->get();
 
-        return view('backend.property.add_property',compact('amenities','propertyType','activeAgent'));
+        return view('backend.property.add_property',compact('amenities','propertyType','activeAgent', 'propertyState'));
     }
 
     public function StoreProperty(Request $request)
@@ -134,12 +136,14 @@ class PropertyController extends Controller
         $property_amenities = explode(',', $type);
 
         $multiImage = MultiImage::where('property_id',$id)->get();
+
+        $propertyState = State::latest()->get();
      
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
 
-        return view('backend.property.edit_property',compact('amenities','propertyType','activeAgent','property','property_amenities','multiImage','facilities'));
+        return view('backend.property.edit_property',compact('amenities','propertyType','activeAgent','property','property_amenities','multiImage','facilities', 'propertyState'));
     }
 
     public function UpdateProperty(Request $request)
