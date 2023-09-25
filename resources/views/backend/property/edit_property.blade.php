@@ -107,10 +107,10 @@
                                                 <label class="form-label">State</label>
                                                 <select name="state" class="form-select" id="exampleFormControlSelect1">
                                                     <option selected="" disabled="">State</option>
-                                                    @foreach ($propertyState as $pstate)
-                                                        <option value="{{ $pstate->id }}"
-                                                            {{ $pstate->id == $property->state ? 'selected' : '' }}>
-                                                            {{ $pstate->state_name }}</option>
+                                                    @foreach ($propertyState as $state)
+                                                        <option value="{{ $state->id }}"
+                                                            {{ $state->state_name == $property->state ? 'selected' : '' }}>
+                                                            {{ $state->state_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

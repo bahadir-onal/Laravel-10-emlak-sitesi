@@ -53,7 +53,7 @@
                                         </tr>
                                         <tr> 
                                             <td>State </td>
-                                            <td><code>{{ $property->state }}</code></td> 
+                                            <td><code>{{ $property['pstate']['state_name'] }}</code></td> 
                                         </tr>
                                         <tr> 
                                             <td>Postal Code </td>
