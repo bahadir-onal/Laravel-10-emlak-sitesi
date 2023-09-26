@@ -214,3 +214,6 @@ require __DIR__.'/auth.php';
 
     // Get all property type data All Route
     Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+
+    // Get state details data All Route
+    Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->name('state.details');

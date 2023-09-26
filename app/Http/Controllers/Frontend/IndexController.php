@@ -12,6 +12,7 @@ use App\Models\PackagePlan;
 use App\Models\PropertyType;
 use App\Models\User;
 use App\Models\PropetyMessage;
+use App\Models\State;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -137,5 +138,14 @@ class IndexController extends Controller
         $pbread = PropertyType::where('id', $id)->first();
 
         return view('frontend.property.property_type', compact('property', 'pbread'));
+    }
+
+    public function StateDetails($id)
+    {
+       $property = Property::where('status', '1')->where('state', $id)->get();
+
+       $bstate = State::where('id', $id)->first();
+
+       return view('frontend.property.state_property', compact('property', 'bstate'));
     }
 }
