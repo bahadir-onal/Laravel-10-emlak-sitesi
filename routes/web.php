@@ -217,3 +217,9 @@ require __DIR__.'/auth.php';
 
     // Get state details data All Route
     Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->name('state.details');
+
+    // Home page buy search All Route
+    Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
+
+    // Home page rent search All Route
+    Route::post('/rent/property/search', [IndexController::class, 'RentPropertySearch'])->name('rent.property.search');

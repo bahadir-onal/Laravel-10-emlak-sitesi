@@ -142,10 +142,54 @@ class IndexController extends Controller
 
     public function StateDetails($id)
     {
-       $property = Property::where('status', '1')->where('state', $id)->get();
+        $property = Property::where('status', '1')->where('state', $id)->get();
 
-       $bstate = State::where('id', $id)->first();
+        $bstate = State::where('id', $id)->first();
 
-       return view('frontend.property.state_property', compact('property', 'bstate'));
+        return view('frontend.property.state_property', compact('property', 'bstate'));
+    }
+
+    public function BuyPropertySearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required',
+            'state' => 'nullable',
+            'ptype_id' => 'nullable',
+        ]);
+
+        $item = $request->input('search');
+        $sstate = $request->input('state');
+        $stype = $request->input('ptype_id');
+
+        $property = Property::with('type', 'pstate')
+            ->where('property_status', 'buy')
+            ->where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%');
+            })
+            
+            ->get();
+        return view('frontend.property.property_search', compact('property'));
+    }
+
+    public function RentPropertySearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required',
+            'state' => 'nullable',
+            'ptype_id' => 'nullable',
+        ]);
+
+        $item = $request->input('search');
+        $sstate = $request->input('state');
+        $stype = $request->input('ptype_id');
+
+        $property = Property::with('type', 'pstate')
+            ->where('property_status', 'rent')
+            ->where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%');
+            })
+            
+            ->get();
+        return view('frontend.property.property_search', compact('property'));
     }
 }
