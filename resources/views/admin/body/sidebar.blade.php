@@ -92,6 +92,24 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button"
+                            aria-expanded="false" aria-controls="emails">
+                            <i class="link-icon" data-feather="home"></i>
+                            <span class="link-title">Testimonials Manage</span>
+                            <i class="link-arrow" data-feather="chevron-down"></i>
+                        </a>
+                        <div class="collapse" id="emails">
+                            <ul class="nav sub-menu">
+                                <li class="nav-item">
+                                    <a href="{{ route('all.testimonials') }}" class="nav-link">All Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('add.testimonials') }}" class="nav-link">Add Testimonials</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('admin.package.history') }}" class="nav-link">
                             <i class="link-icon" data-feather="calendar"></i>
                             <span class="link-title">Package History</span>
