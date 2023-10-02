@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Agent\AgentPropertyController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
@@ -194,6 +195,13 @@ require __DIR__.'/auth.php';
             Route::post('/store/testimonials', 'StoreTestimonials')->name('store.testimonials');
             Route::get('/edit/testimonials/{id}', 'EditTestimonials')->name('edit.testimonials');
             Route::post('/update/testimonials', 'UpdateTestimonials')->name('update.testimonials');
+        });
+
+        //BLOG CATEGORY ALL ROUTE
+        Route::controller(BlogController::class)->group(function(){
+            Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
+            Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+            Route::get('/blog/category/{id}', 'EditBlogCategory');
         });
     });
 
