@@ -93,7 +93,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="POST" action="{{ route('store.blog.category') }}" class="forms-sample">
+                    <form method="POST" action="{{ route('update.blog.category') }}" class="forms-sample">
                         @csrf
 
                         <input type="hidden" name="cat_id" id="cat_id">

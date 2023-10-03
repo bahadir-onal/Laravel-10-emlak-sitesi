@@ -202,6 +202,7 @@ require __DIR__.'/auth.php';
             Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
             Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
             Route::get('/blog/category/{id}', 'EditBlogCategory');
+            Route::post('/update/blog/category', 'UpdateBlogCategory')->name('update.blog.category');
         });
     });
 
