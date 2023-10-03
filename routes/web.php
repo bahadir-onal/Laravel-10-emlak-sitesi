@@ -204,6 +204,11 @@ require __DIR__.'/auth.php';
             Route::get('/blog/category/{id}', 'EditBlogCategory');
             Route::post('/update/blog/category', 'UpdateBlogCategory')->name('update.blog.category');
         });
+
+        //BLOG ALL ROUTE
+        Route::controller(BlogController::class)->group(function(){
+            Route::get('/all/post', 'AllPost')->name('all.post');
+        });
     });
 
 
