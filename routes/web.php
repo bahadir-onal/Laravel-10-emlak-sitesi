@@ -208,6 +208,8 @@ require __DIR__.'/auth.php';
         //BLOG ALL ROUTE
         Route::controller(BlogController::class)->group(function(){
             Route::get('/all/post', 'AllPost')->name('all.post');
+            Route::get('/add/post', 'AddPost')->name('add.post');
+            Route::post('/store/post', 'StorePost')->name('store.post');
         });
     });
 

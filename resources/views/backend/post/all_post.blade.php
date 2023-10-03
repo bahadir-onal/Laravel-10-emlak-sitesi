@@ -4,7 +4,7 @@
 
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{ route('add.state') }}" class="btn btn-inverse-info"> Add Post </a>
+                <a href="{{ route('add.post') }}" class="btn btn-inverse-info"> Add Post </a>
             </ol>
         </nav>
 
@@ -30,7 +30,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->post_title }}</td>
-                                            <td>{{ $item->blogcat_id }}</td>
+                                            <td>{{ $item['cat']['category_name'] }}</td>
                                             <td><img src="{{ asset($item->post_image) }}" style="width:70px;height: 40px;">
                                             </td>
                                             <td>
