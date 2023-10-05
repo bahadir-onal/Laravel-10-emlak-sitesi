@@ -36,7 +36,7 @@
                                             <td>
                                                 <a href="{{ route('edit.post', $item->id) }}"
                                                     class="btn btn-inverse-warning"> Edit </a>
-                                                <a href="{{ route('delete.state', $item->id) }}"
+                                                <a href="{{ route('delete.post', $item->id) }}"
                                                     class="btn btn-inverse-danger" id="delete"> Delete </a>
                                             </td>
                                         </tr>

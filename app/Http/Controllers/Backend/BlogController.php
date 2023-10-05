@@ -137,7 +137,6 @@ class BlogController extends Controller
             );
 
             return redirect()->route('all.post')->with($notification);
-            
         } else {
 
             BlogPost::findOrFail($post_id)->update([
@@ -158,5 +157,21 @@ class BlogController extends Controller
 
             return redirect()->route('all.post')->with($notification);
         }
+    }
+
+    public function DeletePost($id)
+    {
+        $post = BlogPost::findOrFail($id);
+        $img = $post->post_image;
+        unlink($img);
+
+        $post->delete();
+
+        $notification = array(
+            'message' => 'Blog post deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

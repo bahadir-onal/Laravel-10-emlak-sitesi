@@ -212,6 +212,7 @@ require __DIR__.'/auth.php';
             Route::post('/store/post', 'StorePost')->name('store.post');
             Route::get('/edit/post/{id}', 'EditPost')->name('edit.post');
             Route::post('/update/post', 'UpdatePost')->name('update.post');
+            Route::get('/delete/post/{id}', 'DeletePost')->name('delete.post');
         });
     });
 
