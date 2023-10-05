@@ -93,10 +93,70 @@ class BlogController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'BlogPost Inserted Successfully',
+            'message' => 'Blog post inserted Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->route('all.post')->with($notification);
+    }
+
+    public function EditPost($id)
+    {
+        $blogcat = BlogCategory::latest()->get();
+        $post = BlogPost::findOrFail($id);
+
+        return view('backend.post.edit_post', compact('blogcat', 'post'));
+    }
+
+    public function UpdatePost(Request $request)
+    {
+        $post_id = $request->id;
+
+        if ($request->file('post_image')) {
+
+            $image = $request->file('post_image');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(370, 250)->save('upload/post/' . $name_gen);
+            $save_url = 'upload/post/' . $name_gen;
+
+            BlogPost::findOrFail($post_id)->update([
+                'blogcat_id' => $request->blogcat_id,
+                'user_id' => Auth::user()->id,
+                'post_title' => $request->post_title,
+                'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
+                'short_descp' => $request->short_descp,
+                'long_descp' => $request->long_descp,
+                'post_tags' => $request->post_tags,
+                'post_image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Blog post updated with image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('all.post')->with($notification);
+            
+        } else {
+
+            BlogPost::findOrFail($post_id)->update([
+                'blogcat_id' => $request->blogcat_id,
+                'user_id' => Auth::user()->id,
+                'post_title' => $request->post_title,
+                'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
+                'short_descp' => $request->short_descp,
+                'long_descp' => $request->long_descp,
+                'post_tags' => $request->post_tags,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Blog post updated without image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('all.post')->with($notification);
+        }
     }
 }

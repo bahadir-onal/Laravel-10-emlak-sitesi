@@ -210,6 +210,8 @@ require __DIR__.'/auth.php';
             Route::get('/all/post', 'AllPost')->name('all.post');
             Route::get('/add/post', 'AddPost')->name('add.post');
             Route::post('/store/post', 'StorePost')->name('store.post');
+            Route::get('/edit/post/{id}', 'EditPost')->name('edit.post');
+            Route::post('/update/post', 'UpdatePost')->name('update.post');
         });
     });
 
