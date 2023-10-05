@@ -252,3 +252,6 @@ require __DIR__.'/auth.php';
 
     // Home page rent search All Route
     Route::post('/rent/property/search', [IndexController::class, 'RentPropertySearch'])->name('rent.property.search');
+    
+    // Blog details All Route
+    Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
