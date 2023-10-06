@@ -83,6 +83,7 @@ Eğer projeye katkıda bulunmak isterseniz, lütfen yeni bir dal oluşturun ve d
 ## Clone the Repository to Your Computer
 
 `git clone https://github.com/bahadir-onal/Laravel-10-emlak-sitesi.git`
+
 `cd project-name`
 
 `composer install`
