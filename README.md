@@ -1,66 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Emlak Sitesi Projesi 
+ ## Proje Açıklaması
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bu proje, emlak işiyle ilgilenen kişilere yönelik bir web uygulamasını içerir. Emlakçılar ve mülk sahipleri, bu platform aracılığıyla mülklerini satmak veya kiralamak için ilanlar oluşturabilirler. Ayrıca, mülklerle ilgili blog yazıları yayınlayabilir ve öne çıkan mülkleri vurgulayabilirler. 
 
-## About Laravel
+Proje, kullanıcılar için özel olarak tasarlanmış bir ajan paneli ve yalnızca site yöneticisi tarafından erişilebilen bir yönetici paneli içerir. Yönetici paneli, tüm ilanları ve kullanıcıları yönetmek için kullanılırken, ajans paneli emlakçıların kendi ilanlarını ve içeriklerini yönetmelerine olanak tanır.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Özellikler
+ | Özellik| Açıklama |
+ |--------------------------------------------|--------------------------------------------------|
+| Emlak ilanı oluşturma | Emlak sahipleri veya emlakçılar mülk ilanları oluşturabilir. |
+ | Emlak ilanını düzenleme | İlan sahipleri ilanlarını düzenleyebilir. | | Emlak ilanını silme | İlan sahipleri ilanlarını silebilir. |
+ | İlanlara özellik ekleme | İlan sahipleri ilanlarına özellikler ekleyebilir. |
+ | Blog yazısı yayınlama | Kullanıcılar mülklerle ilgili blog yazıları yayınlayabilir. |
+ | Öne çıkan mülkleri vurgulama | İlan sahipleri öne çıkan mülkleri vurgulayabilir. |
+ | Kullanıcı yönetimi | Admin paneli ile kullanıcılar yönetilebilir. |
+ | Emlakçı yönetimi | Admin paneli ile emlakçılar ve ajanlar yönetilebilir.|
+ | İlan istatistikleri | İlanların performansı ve istatistikleri görüntülenebilir. |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Gereksinimler
+ Projenin çalıştırılabilmesi için aşağıdaki gereksinimlere ihtiyacınız vardır:
+ 
+  -  **PHP** (Versiyon 8.0 veya daha yüksek) 
+  -  **Composer** (Paket yöneticisi)
+  -  **Laravel** (Versiyon 10.0 veya daha yüksek) 
+  -  **Veritabanı Sunucusu** (MySQL) 
+  -  **Web Sunucusu** (Apache)
+ 
+ ## Depoyu bilgisayarınıza klonlayın. 
+`git clone https://github.com/bahadir-onal/laravel-vue-todo-list-app.git`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+`cd proje-adı `
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`composer install `
 
-## Laravel Sponsors
+`cp .env.example .env `
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+`php artisan key:generate `
+# .env dosyasını düzenleyerek veritabanı bağlantı ayarlarını yapın 
+`php artisan migrate`
 
-### Premium Partners
+`php artisan seed`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+`php artisan serve`
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+# Katkıda Bulunma:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Eğer projeye katkıda bulunmak isterseniz, lütfen yeni bir dal oluşturun ve değişikliklerinizi yapın. Daha sonra bir çekme isteği oluşturarak değişikliklerinizi değerlendirmemizi sağlayabilirsiniz.
 
-## Security Vulnerabilities
+## bahadironal3@gmail.com
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ENGLİSH
 
-## License
+# Real Estate Website Project  
+## Project Description
+ This project includes a web application designed for individuals involved in the real estate business. Real estate agents and property owners can create listings to sell or rent their properties through this platform. Additionally, users can publish blog posts related to properties and highlight featured properties. The project consists of a dedicated agent panel for users and an admin panel accessible only by the site administrator. While the admin panel is used to manage all listings and users, the agent panel allows real estate agents to manage their own listings and content. 
+ 
+ ## Features
+ | Feature | Description |
+ |--------------------------------------------|--------------------------------------------------|
+| Create Property Listings | Property owners or real estate agents can create property listings. |
+| Edit Property Listings | Listing owners can edit their listings. |
+| Delete Property Listings | Listing owners can delete their listings. |
+| Add Features to Listings | Listing owners can add features to their listings. |
+| Publish Blog Posts | Users can publish blog posts related to properties. |
+| Highlight Featured Properties | Listing owners can highlight featured properties. |
+| User Management | Admin panel allows the management of users. |
+| Agent Management | Admin panel allows the management of real estate agents and agencies. | 
+| Listing Statistics | Performance and statistics of listings can be viewed. |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Requirements To run the project, you need the following requirements: 
+-  **PHP** (Version 8.0 or higher) 
+-  **Composer** (Package manager) 
+-  **Laravel** (Version 10.0 or higher) 
+-  **Database Server** (MySQL) 
+-  **Web Server** (Apache)
+
+## Clone the Repository to Your Computer
+
+`git clone https://github.com/bahadir-onal/laravel-vue-todo-list-app.git`
+`cd project-name`
+
+`composer install`
+
+`cp .env.example .env`
+
+`php artisan key:generate`
+# Edit the .env file to set up the database connection
+
+`php artisan migrate`
+
+`php artisan seed` 
+
+`php artisan serve` 
+
+## Contributing:
+
+If you want to contribute to the project, please create a new branch, make your changes, and then create a pull request for us to review your changes.
+
+
+## bahadironal3@gmail.com
